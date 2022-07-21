@@ -1,13 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
-  </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Todo App | Vanilla</title>
+</head>
+
+<body>
+  <div id="app">
+
+    <header>
+      <h1 id="heading">TODO</h1>
+    </header>
+
+    <main>
+      <section class="input-area">
+        <input type="text">
+        <button>add</button>
+      </section>
+
+      <section class="todos">
+
+        <div class="todo">
+          <span class="todo-text">
+            <input type="checkbox" name="todo1" id="todo1">
+            <p>To do or not to do</p>
+          </span>
+
+          <span class="todo-options">
+            <button>edit</button>
+            <button>delete</button>
+          </span>
+
+        </div>
+
+        <div class="todo">
+
+          <span class="todo-text">
+            <input type="checkbox" name="todo1" id="todo1">
+            <p>To do or not to do</p>
+          </span>
+
+          <span class="todo-options">
+            <button>edit</button>
+            <button>delete</button>
+          </span>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+  <script type="module" src="/main.js"></script>
+</body>
+
 </html>
