@@ -75,6 +75,7 @@ section.todos{
   padding-bottom: .25rem;
   width: 50%;
 
+
   .todo{
     display: flex;
     justify-content: space-between;
@@ -99,4 +100,10 @@ section.todos{
       }
     }
   }
+}
+
+#empty-todo-heading{
+  margin-top: 5rem;
+  text-align: center;
+  opacity: .5;
 }
