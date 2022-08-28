@@ -48,7 +48,9 @@ function App() {
           {todoList.map((todo, k) => (
             <Todo todoObj={todo} deleteTodo={deleteTodo} key={k} />
           ))}
-          <h2 id="empty-todo-heading">The list is currently empty</h2>
+          {todoList.length < 1 && (
+            <h2 id="empty-todo-heading">The list is currently empty</h2>
+          )}
         </section>
 
         <input type="checkbox" name="online" id="online" />
