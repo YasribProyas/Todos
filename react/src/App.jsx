@@ -15,16 +15,19 @@ function App() {
   const onTodoAdd = () => {
     if (todoInput.length < 1) return;
     setTodoList([
+      ...todoList,
       {
         content: todoInput,
         done: false,
       },
-      ...todoList,
     ]);
     setTodoInput("");
   };
   const deleteTodo = (todoObj) => {
     setTodoList(todoList.filter((todo) => todo != todoObj));
+  };
+  const onEnter = (e) => {
+    if (e.key == "Enter") onTodoAdd();
   };
 
   return (
@@ -40,21 +43,24 @@ function App() {
             id="todo-input"
             value={todoInput}
             onChange={onTodoInputChange}
+            onKeyDown={onEnter}
           />
           <button onClick={onTodoAdd}>add</button>
         </section>
 
         <section id="todos" className="todos">
-          {todoList.map((todo, k) => (
-            <Todo todoObj={todo} deleteTodo={deleteTodo} key={k} />
-          ))}
-          {todoList.length < 1 && (
-            <h2 id="empty-todo-heading">The list is currently empty</h2>
-          )}
+          <ol>
+            {todoList.map((todo, k) => (
+              <Todo todoObj={todo} deleteTodo={deleteTodo} key={k} />
+            ))}
+            {todoList.length < 1 && (
+              <h2 id="empty-todo-heading">The list is currently empty</h2>
+            )}
+          </ol>
         </section>
 
-        <input type="checkbox" name="online" id="online" />
-        <label htmlFor="online">online</label>
+        {/* <input type="checkbox" name="online" id="online" />
+        <label htmlFor="online">online</label> */}
       </main>
     </div>
   );

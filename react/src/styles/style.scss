@@ -75,6 +75,10 @@ section.todos{
   padding-bottom: .25rem;
   width: 50%;
 
+  ol{
+    padding: 0;
+    margin: 0;
+  }
 
   .todo{
     display: flex;
@@ -82,8 +86,12 @@ section.todos{
 
     .todo-text{
       display: flex;
-
+      align-items: center;
+      
       input{
+        height: 1.5rem;
+      }
+      input:is([type="checkbox"]){
         width: 1rem;
         margin-right: .5rem;
       }
@@ -91,6 +99,7 @@ section.todos{
       input:checked+p{
         text-decoration: line-through;
       }
+
     }
 
     .todo-options{
