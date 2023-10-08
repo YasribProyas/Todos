@@ -17,16 +17,18 @@
 
     <main>
       <section class="input-area">
-        <input type="text" id="todo-input">
-        <button onclick="addTodo(document.getElementById(`todo-input`), document.getElementById(`todos`))">add</button>
+        <form id="todo-form">
+          <input type="text" id="todo-input" >
+          <button type="submit">add</button>
+        </form>
       </section>
 
       <section id="todos" class="todos">
         <h2 id="empty-todo-heading">The list is currently empty</h2>
       </section>
 
-      <input type="checkbox" name="online" id="online" />
-      <label for="online">online</label>
+      <!-- <input type="checkbox" name="online" id="online" />
+      <label for="online">online</label> -->
     </main>
   </div>
 

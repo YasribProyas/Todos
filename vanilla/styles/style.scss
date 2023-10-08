@@ -54,7 +54,9 @@ section.input-area{
   padding-bottom: 1rem;
   width: 50%;
   
-  display: flex;
+  form{
+    display: flex;
+  }
   align-items: center;
   input, button{
     height: 2rem;

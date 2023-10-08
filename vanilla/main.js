@@ -6,7 +6,6 @@ class Todo {
         this.id = String(Math.random());
         this.htmlElement = this.getHTML();
     }
-
     getHTML = () => {
         const todoElement = document.createElement("div");
 
@@ -14,30 +13,63 @@ class Todo {
         todoElement.dataset.id = this.id;
 
         todoElement.innerHTML = `<span class="todo-text">
-                                <input type="checkbox" name="todo1" id="todo1" />
+                                <input type="checkbox" name="todo1" />
                                 <p>${this.todoText}</p>
                             </span>
                             <span class="todo-options">
-                                <button>edit</button>
+                                <button onclick="editTodo(${this.id})">edit</button>
                                 <button onclick="deleteTodo(${this.id})">delete</button>
                             </span>`;
         return todoElement;
     }
+    objectify = () =>({
+            todoText: this.todoText,
+        })
+
+    static objectifyAll = (todos) => todos.map(todo=>todo.objectify())
 }
 
-let todos = [];
+let todosSection = document.getElementById("todos");
 
 
-window.addTodo = function (textInput, todosSection) {
+let todos = (JSON.parse(localStorage.getItem("todos") || "[]"))
+            .map(({todoText})=>{
+                let todo = new Todo(todoText);
+                todosSection.prepend(todo.htmlElement)
+                return todo;
+            });
+
+
+
+console.log(todos);
+// console.log((JSON.parse(localStorage.getItem("todos") || "[]")).map(({todoText})=>new Todo(todoText)));
+// console.log(JSON.stringify(Todo.objectifyAll(todos)));
+
+
+let todoForm = document.getElementById("todo-form");
+todoForm.addEventListener("submit", e=>{
+    e.preventDefault()
+    addTodo(e.target[0], todosSection)
+})
+
+let addTodo = function (textInput, todosSection) {
     if (!textInput.value) return;
-    const todo = new Todo(textInput.value)
+    let todo = new Todo(textInput.value)
     textInput.value = "";
     todos.push(todo);
     todosSection.prepend(todo.htmlElement);
+    localStorage.setItem("todos", JSON.stringify(Todo.objectifyAll(todos)));
 };
 
+
+window.editTodoTodo = function (id) {
+    todos = todos.filter(todo => todo.id != id);
+    let todoElement = document.querySelector(`[data-id="${id}"]`);
+    todoElement.parentElement.removeChild(todoElement);
+}
 window.deleteTodo = function (id) {
     todos = todos.filter(todo => todo.id != id);
-    const todoElement = document.querySelector(`[data-id="${id}"]`);
+    localStorage.setItem("todos", JSON.stringify(Todo.objectifyAll(todos)));
+    let todoElement = document.querySelector(`[data-id="${id}"]`);
     todoElement.parentElement.removeChild(todoElement);
 }
